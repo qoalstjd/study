@@ -33,3 +33,13 @@
   width: $wh;
   height: $wh;
 }
+
+@mixin responsibleWidth() {
+  width: 1440px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1457px) {
+    width: 100%;
+    padding: 0 24px;
+  }
+}

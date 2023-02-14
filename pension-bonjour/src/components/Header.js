@@ -3,19 +3,27 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header>
-      <div className="headerInner">
-        <Link to="/" className="logo">
-          <h1 className="h1_b_lt parisienne">
-            Pension Bonjour<span className="hidden"> 봉쥬르 펜션</span>
-          </h1>
-        </Link>
-        <ul className="gnb">
-          <li></li>
+      <div>
+        <div>
+          <Link to="/">
+            <h1>Pension Bonjour</h1>
+          </Link>
+        </div>
+        <ul>
+          <li>
+            <Link to="/">펜션소개</Link>
+          </li>
+          <li>
+            <Link to="/">객실안내</Link>
+          </li>
+          <li>
+            <Link to="/">주변소개</Link>
+          </li>
+          <li>
+            <Link to="/">예약하기</Link>
+          </li>
         </ul>
-        <a to="javascript:void(0)" className="menuBtn">
-          <div></div>
-          <div></div>
-        </a>
+        <button></button>
       </div>
     </header>
   );

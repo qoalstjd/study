@@ -1,40 +1,40 @@
 const Footer = () => {
   return (
-    <footer className="mt_30n">
-      <div className="footerInner">
-        <ul className="footerContent">
+    <footer>
+      <div>
+        <ul>
           <li>
-            <p className="h1_b_lt parisienne fc_wht tit">
+            <p>
               Pension Bojour
               <br />
-              <span className="p2_m_lt fc_wht">봉쥬르 펜션</span>
+              <span>봉쥬르 펜션</span>
             </p>
-            <p className="p2_m_lt fc_wht copy">&copy; 2022 PENSION BONJOUR. All Right Reserved.</p>
+            <p>&copy; 2022 PENSION BONJOUR. All Right Reserved.</p>
           </li>
           <li>
             <ul>
-              <li className="p2_m_lt fc_wht">전라남도 구례군 토지면 섬진강대로 4310-20</li>
-              <li className="p2_m_lt fc_wht">사업자등록번호 : 776-26-00204</li>
-              <li className="p2_m_lt fc_wht">전화번호 : 010-8746-1409</li>
-              <li className="p2_m_lt fc_wht">이메일 : leylife@naver.com</li>
+              <li>전라남도 구례군 토지면 섬진강대로 4310-20</li>
+              <li>사업자등록번호 : 776-26-00204</li>
+              <li>전화번호 : 010-8746-1409</li>
+              <li>이메일 : leylife@naver.com</li>
             </ul>
           </li>
           <li>
-            <p className="p1_m_lt fc_wht tit">계좌정보</p>
-            <table className="commonTable type2 mt_6n">
+            <p>계좌정보</p>
+            <table>
               <caption>입금은행, 계좌번호, 예금주에 관한 표</caption>
               <tbody>
                 <tr>
-                  <th className="p2_b_lt fc_wht">입금은행</th>
-                  <td className="p2_m_lt fc_wht">신한은행</td>
+                  <th>입금은행</th>
+                  <td>신한은행</td>
                 </tr>
                 <tr>
-                  <th className="p2_b_lt fc_wht">계좌번호</th>
-                  <td className="p2_m_lt fc_wht">110-3544-6630</td>
+                  <th>계좌번호</th>
+                  <td>110-3544-6630</td>
                 </tr>
                 <tr>
-                  <th className="p2_b_lt fc_wht">예금주</th>
-                  <td className="p2_m_lt fc_wht">이은영</td>
+                  <th>예금주</th>
+                  <td>이은영</td>
                 </tr>
               </tbody>
             </table>

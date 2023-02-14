@@ -4,12 +4,15 @@
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  box-sizing: border-box;
+  font: inherit;
+}
+html {
   font-size: 16px;
   font-weight: 400;
   font-family: "Noto-sans", sans-serif;
   line-height: 1;
-  font: inherit;
-  box-sizing: border-box;
+  color: #000;
 }
 article,
 aside,
@@ -48,4 +51,8 @@ table {
 }
 button {
   background: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
 }
