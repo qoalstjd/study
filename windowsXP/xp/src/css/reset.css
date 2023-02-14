@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.6em;
+  font-style: normal;
+  color: inherit;
+  box-sizing: border-box;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button,
+input[type="submit"],
+input[type="button"] {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+input,
+textarea {
+  display: block;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+iframe,
+img {
+  vertical-align: middle;
+  border: none;
+  width: 100%;
+}

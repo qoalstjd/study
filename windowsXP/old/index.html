@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="12;url=main.html">
+  <title>Bae Minseong &#124; PORTPOLIO</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!-- Boot S -->
+  <section id="boot">
+    <img class="bootImg" src="img/boot.png" alt="윈도우xp 부팅이미지">
+    <div class="progressBar">
+      <div class="progress">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <p class="copy">Copyright &copy; BaeMinseong<br>본 페이지는 상업적 목적이 아닌 개인 포트폴리오 용도로 제작되었습니다.</p>
+  </section>
+  <!-- Boot E -->
+  
+  <!-- Start S -->
+  <section id="newStart">
+    <p>새로운 시작</p>
+  </section>
+  <!-- Start E -->
+
+  <script>
+    const boot = document.getElementById("boot")
+    const progress = document.getElementsByClassName("progress")
+    let state = 0
+
+    function loading() {
+      state += 1
+      if (state > 13) {
+        state = 0
+      }
+      progress[0].style.marginLeft = -60 + (20 * state) + "px"
+    }
+
+    setInterval(loading, 1000)
+    setTimeout(function() {
+      boot.style.display = "none"
+    }, 9000)
+  </script>
+</body>
+</html>

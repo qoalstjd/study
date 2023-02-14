@@ -1,0 +1,35 @@
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin absolute($top, $right, $bottom, $left, $width, $height) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  width: $width;
+  height: $height;
+}
+
+@mixin flex($flex-direction, $justify-content, $align-items) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin spliteIco($wh, $background-positionX, $background-positionY) {
+  background: url(../img/splite_ico.png) no-repeat $background-positionX $background-positionY;
+  background-size: 500%;
+  width: $wh;
+  height: $wh;
+}
+
+@mixin spliteBtn($wh, $background-positionX, $background-positionY) {
+  background: url(../img/splite.png) no-repeat $background-positionX $background-positionY;
+  background-size: 500%;
+  width: $wh;
+  height: $wh;
+}

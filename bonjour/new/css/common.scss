@@ -1,0 +1,612 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Parisienne&display=swap');
+
+/* ====================== reset S ====================== */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+}
+
+button{
+  border: none;
+  background: none;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+iframe, img{
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+html, body, header, section, footer, ul, li, a, h1, h2, h3, h4, h5, h6, p, button, address, strong, em, dl, dt, dd, div, span, input, th, td{
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6em;
+  font-style: normal;
+  color: #222;
+  box-sizing: border-box;
+  letter-spacing: 0;
+  transition-duration: 0.5s;
+}
+
+section, footer{
+  position: relative;
+}
+
+a{
+  text-decoration: none;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption, .hidden{
+  position:absolute !important;  
+  width:1px; 
+  height:1px; 
+  overflow:hidden;
+  clip:rect(1px 1px 1px 1px);
+  clip:rect(1px, 1px, 1px, 1px);
+}
+/* ====================== reset E ====================== */
+
+/* ====================== varibles S ====================== */
+$cl-primary: #222;
+$cl-wht: #fff;
+$cl-accent: #efc900;
+$cl-a64: rgba(0,0,0,0.64);
+$cl-a48: rgba(0,0,0,0.48);
+$cl-a20: rgba(0,0,0,0.20);
+$cl-s64: #5c5c5c;
+$cl-s48: #858585;
+$cl-s20: #ccc;
+$tablet: 1440px;
+$mobile: 800px;
+
+@mixin tablet{
+  @media (max-width: $mobile){
+      @content;
+  }
+}
+
+@mixin mobile{
+  @media (max-width: $mobile){
+      @content;
+  }
+}
+
+@mixin flexCenter($justify){
+  display: flex; 
+  justify-content: $justify; 
+  align-items: center; 
+  flex-flow: row wrap;
+}
+
+@mixin absoluteCenter($top) {
+  position: absolute;
+  left: 50%;
+  top: $top;
+  transform: translate(-50%,-50%);
+}
+
+@mixin marginCenter{
+    width: 1440px;
+    margin: 0 auto;
+}
+
+// 폰트 S
+.parisienne {font-family: 'Parisienne', cursive; letter-spacing: 0;}
+
+[class*="_lt"] {text-align:left;}
+[class*="_ctr"] {text-align:center;}
+[class*="_rt"] {text-align:right;}
+
+.ellipsis {overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.txt_nowrap {white-space:nowrap;}
+
+[class^="h0"], [class^="h1"], [class^="h2"] {letter-spacing:-0.040em;}
+[class^="h1"] {font-size:34px; line-height:44px;}
+[class^="h2"] {font-size:28px; line-height:36px;}
+[class^="h3"] {font-size:24px; line-height:32px;}
+[class^="h4"] {font-size:20px; line-height:26px;}
+[class^="p0"] {font-size:18px;}
+[class^="p0"][class*="_1ln"] {line-height:22px;}
+[class^="p0"][class*="_2ln"] {line-height:26px;}
+[class^="p1"] {font-size:16px;}
+[class^="p1"][class*="_1ln"] {line-height:22px;}
+[class^="p1"][class*="_2ln"] {line-height:26px;}
+[class^="p2"] {font-size:14px;}
+[class^="p2"][class*="_1ln"] {line-height:20px;}
+[class^="p2"][class*="_2ln"] {line-height:22px;}
+[class^="p3"] {font-size:12px;}
+[class^="p3"][class*="_1ln"] {line-height:16px;}
+[class^="p3"][class*="_2ln"] {line-height:18px;}
+
+/* font-weight */
+[class^="h0_l"], [class^="p0_l"],
+[class^="h1_l"], [class^="p1_l"],
+[class^="h2_l"], [class^="p2_l"],
+[class^="h3_l"], [class^="p3_l"],
+[class^="h4_l"], [class^="p4_l"] {font-weight:300;}
+[class^="h0_m"], [class^="p0_m"],
+[class^="h1_m"], [class^="p1_m"],
+[class^="h2_m"], [class^="p2_m"],
+[class^="h3_m"], [class^="p3_m"],
+[class^="h4_m"], [class^="p4_m"] {font-weight:500;}
+[class^="h0_b"], [class^="p0_b"],
+[class^="h1_b"], [class^="p1_b"],
+[class^="h2_b"], [class^="p2_b"],
+[class^="h3_b"], [class^="p3_b"],
+[class^="h4_b"], [class^="p4_b"] {font-weight:700;}
+
+[class*="fc"][class*="_blk"] {color:$cl-primary;}
+[class*="fc"][class*="_wht"] {color:$cl-wht;}
+[class*="fc"][class*="_a64"] {color:$cl-a64;}
+[class*="fc"][class*="_a48"] {color:$cl-a48;}
+[class*="fc"][class*="_s64"] {color:$cl-s64;}
+[class*="fc"][class*="_s48"] {color:$cl-s48;}
+[class*="fc"][class*="_act"] {color:$cl-accent;}
+
+ul li {color: inherit;}
+ul li a {color: inherit;}
+// 폰트 E
+
+/* ====================== varibles E ====================== */
+
+/* ====================== component S ====================== */
+.icoPlus{
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+
+  &::before{
+    content: '';
+    @include absoluteCenter(50%);
+    width: 100%;
+    height: 2.5px;
+    background-color: $cl-primary;
+    border-radius: 1.25px;
+  }
+  &::after{
+    content: '';
+    @include absoluteCenter(50%);
+    width: 2.5px;
+    height: 100%;
+    background-color: $cl-primary;
+    border-radius: 1.25px;
+  }
+}
+
+[class^="ico"]{
+  background: url("../img/ico.png") no-repeat;
+  background-size: 150px;
+}
+@for $i from 0 to 3{
+  .ico_#{$i}{
+    background-position: ($i * -30px) 0 ;
+  }
+}
+
+table.commonTable{
+  border-top: 1px solid $cl-primary;
+
+  tr{
+    border-top: 1px solid $cl-s64;
+    
+    th, td{
+      padding: 10px;
+    }
+  }
+
+  &.type2{
+    border-color: $cl-wht;
+
+    tr{
+      border-color: rgba(255,255,255,0.64);
+    }
+  }
+}
+
+@for $i from 0 to 31{
+  .mt_#{$i}n{
+    margin-top: ($i * 4px) !important;
+  }
+}
+
+@mixin afterUnderLine($top){
+    content: "";
+    @include absoluteCenter($top);
+    display: block;
+    width: 0px;
+    height: 2px;
+    background-color: $cl-accent;
+    transition-duration: 0.5s;
+}
+/* ====================== component E ====================== */
+
+html {scroll-behavior: smooth;}
+
+/* ====================== main S ====================== */
+
+// 헤더 S
+header{
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  z-index: 9999;
+  &.scrolled{
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px $cl-a20;
+  }
+
+  .headerInner{
+    position: relative;
+
+    .logo{
+      position: absolute;
+      left: 25px;
+      h1{
+        line-height: 80px;
+        &:hover{
+          color: $cl-accent;
+        }
+        &.scrolled{
+          line-height: 60px;
+        }
+      }
+    }
+
+    .gnb{
+      @include flexCenter(center);
+
+      li{
+        a{
+          position: relative;
+          display: block;
+          line-height: 80px;
+          margin: 0 10px;
+          padding: 0 10px;
+
+          &::after{
+            @include afterUnderLine(57px);
+          }
+          &:hover{
+            color: $cl-accent;
+            &::after{
+              width: 60px;
+            }
+          }
+          &.scrolled{
+            line-height: 60px;
+            &::after{
+              top: 47px;
+            }
+          }
+        }
+      }
+    }
+
+    .menuBtn{
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      width: 30px;
+      height: 30px;
+
+      &.scrolled{
+        top: 15px;
+      }
+
+      div{
+        @include absoluteCenter(50%);
+        width: 100%;
+        height: 2.5px;
+        background-color: $cl-primary;
+        border-radius: 1.25px;
+
+        &:nth-child(1){
+          margin-top: -5px;
+        }
+        &:nth-child(2){
+          margin-top: 5px;
+        }
+      }
+      &:hover div{
+        background-color: $cl-accent;
+      }
+
+      &.on{
+        div{
+          left: 3.5px;
+          margin-top: 0;
+          
+          &:nth-child(1){
+            transform: rotate(45deg);
+          }
+          &:nth-child(2){
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.menuPop{
+  display: none;
+}
+// 헤더 E
+
+// 팝or픽스 S
+.floatingItems{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+
+  li{
+    margin-top: 10px;
+
+    a{
+      position: relative;
+      display: block;
+      padding: 0 30px;
+      width: 0px;
+      height: 60px;
+      border-radius: 30px;
+      box-shadow: 2px 2px 5px $cl-a20;
+      background-color: $cl-accent;
+      overflow: hidden;
+      
+      &.scrollTopBtn{
+        background-color: $cl-s48;
+      }
+      
+      .cont{
+        @include flexCenter(flex-start);
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0 15px;
+        width: 150px;
+
+        i{
+          margin: 15px 15px 15px 0;
+          width: 30px;
+          height: 30px;
+        }
+      }
+      &:hover{
+        width: 155px;
+
+        &.scrollTopBtn{
+          width: 0;
+        }
+      }
+    }
+  }
+
+  &.scrolled{
+    bottom: 90px;
+  }
+
+  & li:nth-child(4){
+    position: absolute;
+    right: -80px;
+    bottom: 0;
+  }
+
+  &.scrolled li:nth-child(4){
+    right: 0;
+    bottom: -70px;
+  }
+}
+// 팝or픽스 E
+
+// 메인비주얼 S
+.mainVisual{
+  position: relative;
+  height: 100vh;
+
+  .visualExtend{
+    @include absoluteCenter(50%);
+    width: 100%;
+    height: 100%;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+    clip:rect(10vh calc(65vw - 8.5px) 90vh calc(35vw - 8.5px));
+    clip:rect(10vh, calc(65vw - 8.5px), 90vh, calc(35vw - 8.5px));
+    overflow: hidden;
+
+    background: url(../img/main_slide0.jpeg) no-repeat;
+    background-size: cover;
+
+    img{
+      @include absoluteCenter(50%);
+      width: 100%;
+      height: 100vh;
+    }
+
+    &::after{
+      content: '';
+      @include absoluteCenter(50%);
+      width: 100%;
+      height: 100%;
+      background-color: $cl-primary;
+      opacity: 0.2;
+    }
+  }
+
+  .titleBox{
+    .subTit{
+      @include absoluteCenter(50%);
+      width: 410px;
+      opacity: 1;
+    }
+    p{
+      @include absoluteCenter(50%);
+      width: 100%;
+      
+      &:nth-child(1){
+        margin-top: -70px;
+      }
+      &:nth-child(2){
+        margin-top: 70px;
+      }
+    }
+    .tit{
+      opacity: 0;
+      
+      h2{
+        @include absoluteCenter(50%);
+        font-size: 50px;
+        letter-spacing: 0.200em;
+      }
+    }
+  }
+
+  .pagination{
+    @include flexCenter(space-between);
+    @include absoluteCenter(80vh);
+    opacity: 0;
+
+    li{
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border: 2px solid $cl-wht;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 0 5px;
+
+      a{
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 5px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        text-indent: -9999px;
+      }
+      
+      &:hover{
+        border-color: $cl-accent;
+      }
+
+      &.curDot{
+        border-color: $cl-accent;
+      }
+
+      &.curDot a{
+        background-color: $cl-accent;
+      }
+
+      &.stopBtn{
+        border: none;
+        border-radius: 0;
+        background-color: #fff;
+
+        button{
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+// 메인비주얼 E
+
+// 펜션소식 S
+// 펜션소식 E
+
+// 객실안내 S
+.room{
+  overflow: hidden;
+
+  .contentBox{
+    @include flexCenter(flex-start);
+    position: relative;
+
+    .leftBox{
+      .tabsTitle{
+        @include flexCenter(flex-start);
+      }
+    }
+    .rightBox{
+      width: 50%;
+      .imgList{
+        @include flexCenter(flex-start);
+        width: 500%;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+// 객실안내 E
+
+// 푸터 S
+footer{
+  position: relative;
+  background-color: $cl-s64;
+  padding: 50px 0;
+
+  .footerInner{
+
+    .footerContent{
+      @include flexCenter(space-between);
+      align-items: flex-start;
+      gap: 80px;
+
+      &>li{
+        flex: 1;
+        position: relative;
+        height: 180px;
+
+        &::after{
+          content: '';
+          display: block;
+          position: absolute;
+          right: -40px;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background-color: $cl-wht;
+        }
+
+        &:nth-child(1){
+          .tit{
+            line-height: 1em;
+          }
+          .copy{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+          }
+        }
+        &:nth-child(3){
+          &::after{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+// 푸터 E
+/* ====================== main E ====================== */

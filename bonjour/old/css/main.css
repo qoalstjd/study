@@ -1,0 +1,581 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Parisienne&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+iframe, img {
+  vertical-align: middle;
+  border: none;
+  width: 100%;
+}
+
+html, body, header, section, footer, ul, li, a, h1, h2, h3, h4, h5, h6, p, button, address, strong, em, dl, dt, dd, div, span {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.6em;
+  text-decoration: none;
+  font-style: normal;
+  color: inherit;
+  box-sizing: border-box;
+  transition-duration: 0.5s;
+}
+
+html {
+  color: #222;
+}
+
+html::-moz-selection, body::-moz-selection, header::-moz-selection, section::-moz-selection, footer::-moz-selection, ul::-moz-selection, li::-moz-selection, a::-moz-selection, h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection, p::-moz-selection, button::-moz-selection, address::-moz-selection, strong::-moz-selection, em::-moz-selection, dl::-moz-selection, dt::-moz-selection, dd::-moz-selection, div::-moz-selection, i::-moz-selection, br::-moz-selection, iframe::-moz-selection, img::-moz-selection, span::-moz-selection {
+  background-color: #efc900;
+  color: #222;
+}
+
+html::selection, body::selection, header::selection, section::selection, footer::selection, ul::selection, li::selection, a::selection, h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, p::selection, button::selection, address::selection, strong::selection, em::selection, dl::selection, dt::selection, dd::selection, div::selection, i::selection, br::selection, iframe::selection, img::selection, span::selection {
+  background-color: #efc900;
+  color: #222;
+}
+
+a::after {
+  transition-duration: 0.5s;
+}
+
+i::before {
+  font-size: 30px;
+}
+
+.sectionTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.parisienne {
+  font-family: "Parisienne", cursive;
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.viewMore {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 8.8px;
+}
+.viewMore i::before {
+  font-size: 40px;
+}
+.viewMore:hover {
+  transform: rotate(90deg);
+  color: #efc900;
+}
+
+dl {
+  font-size: 0;
+}
+dl dt {
+  display: inline-block;
+  font-weight: 500;
+  line-height: 2em;
+}
+dl dd {
+  display: inline-block;
+  line-height: 2em;
+}
+
+.t-shadow {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.b-shadow {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+header {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+header .headerInner {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+}
+header .headerInner .logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+header .headerInner .logo h1 {
+  line-height: 80px;
+  margin: 0 20px;
+}
+header .headerInner .gnb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+header .headerInner .gnb a {
+  position: relative;
+  font-size: 20px;
+  display: block;
+  width: 140px;
+  line-height: 80px;
+  color: #fff;
+}
+header .headerInner .gnb a:hover {
+  color: #efc900;
+}
+header .headerInner .gnb a:hover::after {
+  width: 60px;
+}
+header .headerInner .gnb a::after {
+  content: "";
+  position: absolute;
+  top: 57px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 0px;
+  height: 2px;
+  background-color: #efc900;
+}
+header .headerInner .menuBtn {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  width: 30px;
+  height: 20px;
+}
+header .headerInner .menuBtn div {
+  position: absolute;
+  right: 0;
+  height: 3px;
+  border-radius: 1.5px;
+  width: 100%;
+  background-color: #fff;
+}
+header .headerInner .menuBtn:hover div {
+  background-color: #efc900;
+}
+header .headerInner .menuBtn div:nth-child(2) {
+  top: 8.5px;
+  width: 75%;
+}
+header .headerInner .menuBtn div:nth-child(3) {
+  bottom: 0;
+}
+
+.menuPop {
+  display: none;
+}
+
+.mainSlide {
+  position: relative;
+  height: 100vh;
+  background: url(../img/main_slide0.jpeg) center;
+  background-size: cover;
+  text-align: center;
+}
+.mainSlide::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.mainSlide .titleBox {
+  position: absolute;
+  top: 40vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+}
+.mainSlide .titleBox .parisienne {
+  color: #efc900;
+  margin-bottom: 20px;
+  padding-top: 40px;
+}
+.mainSlide .titleBox p {
+  font-weight: 300;
+  color: #fff;
+  padding-bottom: 40px;
+}
+.mainSlide .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  position: absolute;
+  top: 70vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mainSlide .pagination .dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.mainSlide .pagination .dot a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.mainSlide .pagination .dot:hover {
+  border-color: #efc900;
+}
+.mainSlide .pagination .dot.curDot {
+  border-color: #efc900;
+}
+.mainSlide .pagination .dot.curDot a {
+  background-color: #efc900;
+}
+.mainSlide .pagination .stopBtn {
+  width: 24px;
+  height: 24px;
+  margin: 0 5px;
+  background: url(../img/stop.png) no-repeat center;
+}
+.mainSlide .pagination .stopBtn a {
+  display: block;
+  text-indent: -9999px;
+  line-height: 24px;
+}
+.mainSlide .floatingItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  position: absolute;
+  top: 80vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mainSlide .floatingItems li {
+  position: relative;
+}
+.mainSlide .floatingItems li:nth-child(2) {
+  margin: 0 5px;
+}
+.mainSlide .floatingItems li a {
+  padding: 20px 40px;
+  display: block;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.mainSlide .floatingItems li a p {
+  margin-top: 5px;
+}
+.mainSlide .floatingItems li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: #efc900;
+  z-index: -1;
+}
+.mainSlide .floatingItems li a:hover::after {
+  height: 100%;
+}
+.mainSlide .scrolltopBtn {
+  display: block;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+  transform: rotate(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.mainSlide .scrolltopBtn i::before {
+  font-size: 40px;
+}
+
+.room {
+  position: relative;
+  margin-top: 120px;
+  overflow: hidden;
+}
+.room .roomInner {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  height: 680px;
+}
+.room .roomInner .tabsTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  margin: 10px auto;
+  width: 480px;
+  text-align: center;
+}
+.room .roomInner .tabsTitle .curTab a {
+  color: #efc900;
+}
+.room .roomInner .tabsTitle .curTab a::after {
+  width: 50px;
+}
+.room .roomInner .tabsTitle a {
+  display: block;
+  position: relative;
+  width: 120px;
+  line-height: 50px;
+}
+.room .roomInner .tabsTitle a::after {
+  content: "";
+  position: absolute;
+  top: 43px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 0px;
+  height: 2px;
+  background-color: #efc900;
+  transition-duration: 0.5s;
+}
+.room .roomInner .tabsTitle a:hover {
+  color: #efc900;
+}
+.room .roomInner .tabsTitle a:hover::after {
+  width: 50px;
+}
+.room .roomInner .roomDetail {
+  position: relative;
+  width: 50%;
+  margin-top: 40px;
+  padding: 80px 0 100px 0;
+  color: #fff;
+}
+.room .roomInner .roomDetail::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 9999px;
+  height: 100%;
+  background-color: #666;
+  z-index: -1;
+}
+.room .roomInner .roomDetail .parisienne {
+  margin-bottom: 20px;
+  color: #efc900;
+}
+.room .roomInner .roomDetail dt {
+  width: 20%;
+  line-height: 2.5em;
+}
+.room .roomInner .roomDetail dd {
+  width: 80%;
+}
+.room .roomInner .roomDetail p {
+  width: 450px;
+  margin-top: 10px;
+}
+.room .roomInner .roomDetail .controlBtn {
+  position: absolute;
+  top: 40px;
+}
+.room .roomInner .roomDetail .controlBtn:hover {
+  color: #efc900;
+}
+.room .roomInner .roomDetail .controlBtn.prevBtn {
+  transform: rotate(90deg);
+  right: 100px;
+}
+.room .roomInner .roomDetail .controlBtn.nextBtn {
+  transform: rotate(-90deg);
+  right: 40px;
+}
+.room .roomInner .imgList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row wrap;
+  position: absolute;
+  left: 35%;
+  top: 290px;
+  width: 3100px;
+}
+.room .roomInner .imgList li {
+  width: 600px;
+  margin-right: 20px;
+  opacity: 0.5;
+}
+.room .roomInner .imgList li.curImg {
+  opacity: 1;
+}
+
+/* 예약하기
+.reservation{
+    height: 250px;
+    margin-top: 80px;
+    background: url(../img/midVisual.jpg) no-repeat fixed;
+    background-size: cover;
+
+    ul{
+        @include marginCenter();
+        @include flexCenter(center);
+
+        li{
+            flex: 1;
+            margin: 50px 10px;
+            text-align: center;
+            background-color: $rgba-color;
+
+            a{
+                line-height: 150px;
+                text-shadow: 2px 2px 3px $rgba-color;
+                color: $text-color;
+            }
+        }
+    }
+}
+*/
+.contact {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+.contact .contentBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row wrap;
+  margin-top: 40px;
+  background-color: #666;
+}
+.contact .contentBox .leftBox {
+  width: 50%;
+}
+.contact .contentBox .leftBox iframe {
+  width: 100%;
+}
+.contact .contentBox .rightBox {
+  width: 50%;
+  padding: 50px;
+  color: #fff;
+}
+.contact .contentBox .rightBox dt {
+  width: 20%;
+  vertical-align: top;
+}
+.contact .contentBox .rightBox dd {
+  width: 80%;
+}
+.contact .contentBox .rightBox dd dt {
+  width: 25%;
+}
+.contact .contentBox .rightBox dd dd {
+  width: 75%;
+}
+.contact .contentBox .rightBox dd dd.ml {
+  margin-left: 25%;
+}
+
+.arround {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+
+.convenient {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+.convenient .convenientList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 1200px;
+  margin: 40px auto 0 auto;
+  text-align: center;
+}
+.convenient .convenientList li {
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border: 1px solid #666;
+  color: #666;
+  margin-left: 72px;
+  margin-bottom: 36px;
+  border-radius: 50%;
+}
+.convenient .convenientList li:nth-child(6n+1) {
+  margin-left: 0;
+}
+.convenient .convenientList li i {
+  margin-top: 35px;
+}
+.convenient .convenientList li p {
+  margin-top: 10px;
+}
+
+footer {
+  background-color: #444;
+  color: #fff;
+  padding: 40px 0;
+  margin-top: 120px;
+}
+footer .footerInner {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+}
+footer .footerInner .footerLeft {
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.2em;
+}
+footer .footerInner .footerLeft span {
+  font-size: 22px;
+  font-weight: 500;
+}/*# sourceMappingURL=main.css.map */

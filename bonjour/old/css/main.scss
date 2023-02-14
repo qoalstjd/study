@@ -1,0 +1,685 @@
+// varibles_reset
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Parisienne&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li{
+    list-style: none;
+}
+
+button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+iframe, img{
+    vertical-align: middle;
+    border: none;
+    width: 100%;
+}
+
+html, body, header, section, footer, ul, li, a, h1, h2, h3, h4, h5, h6, p, button, address, strong, em, dl, dt, dd, div, span{
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.6em;
+    text-decoration: none;
+    font-style: normal;
+    color: inherit;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+}
+
+html{
+    color: #222;
+}
+
+
+$primary-color: #222;
+$accent-color1: #efc900;
+$text-color: #fff;
+$rgba-color2: rgba(0,0,0,0.2);
+$rgba-color5: rgba(0,0,0,0.5);
+$gray-color: #666;
+$font-sizes: ("normal": 16px, "small": 20px, "medium": 22px, "large": 36px);
+$font-weights: ("light": 300, "medium": 500, "bold": 700);
+$tablet: 1440px;
+$mobile: 800px;
+
+@mixin tablet{
+    @media (max-width: $mobile){
+        @content;
+    }
+}
+
+@mixin mobile{
+    @media (max-width: $mobile){
+        @content;
+    }
+}
+
+@mixin flexCenter($justify){
+    display: flex; 
+    justify-content: $justify; 
+    align-items: center; 
+    flex-flow: row wrap;
+}
+
+@mixin marginCenter{
+    position: relative;
+    width: 1440px;
+    margin: 0 auto;
+}
+
+@mixin absoluteCenter($top){
+    position: absolute;
+    top: $top;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin absolutelt($top){
+    position: absolute;
+    left: 0;
+    top: $top;
+}
+
+@mixin absolutert($top){
+    position: absolute;
+    right: 0;
+    top: $top;
+}
+
+@mixin afterUnderLine($top){
+    content: "";
+    @include absoluteCenter($top);
+    display: block;
+    width: 0px;
+    height: 2px;
+    background-color: $accent-color1;
+    transition-duration: 0.5s;
+}
+
+@mixin smallfont{
+    font-size: map-get($font-sizes, small);
+    font-weight: map-get($font-weights, light);
+}
+
+@mixin mediumfont{
+    font-size: map-get($font-sizes, medium);
+    font-weight: map-get($font-weights, medium);
+}
+
+@mixin largefont{
+    font-size: map-get($font-sizes, large);
+    font-weight: map-get($font-weights, bold);
+}
+
+// common
+html, body, header, section, footer, ul, li, a, h1, h2, h3, h4, h5, h6, p, button, address, strong, em, dl, dt, dd, div, i, br, iframe, img, span{
+    &::selection{
+        background-color: $accent-color1;
+        color: $primary-color;
+    }
+}
+
+a::after{
+    transition-duration: 0.5s;
+}
+
+i::before{
+    font-size: 30px;
+}
+
+.sectionTitle{
+    @include largefont;
+    margin-bottom: 10px;
+}
+
+.parisienne{
+    font-family: 'Parisienne', cursive;
+    font-size: map-get($font-sizes, large);
+    font-weight: map-get($font-weights, medium);
+    color: $text-color;
+}
+
+.viewMore{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 8.8px;
+
+    & i::before{
+        font-size: 40px;
+    }
+
+    &:hover{
+        transform: rotate(90deg);
+        color: $accent-color1;
+    }
+}
+
+dl{
+    font-size: 0;
+
+    dt{
+        display: inline-block;
+        font-weight: map-get($font-weights, medium);
+        line-height: 2em;
+    }
+
+    dd{
+        display: inline-block;
+        line-height: 2em;
+    }
+}
+
+.t-shadow{
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.b-shadow{
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.5);
+}
+
+// INDEX
+
+// 헤더 S
+header{
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+
+    .headerInner{
+        @include marginCenter;
+
+        .logo{
+            @include absolutelt(0);
+
+            h1{
+                line-height: 80px;
+                margin: 0 20px;
+            }
+        }
+
+        .gnb{
+            @include flexCenter(center);
+            @include absoluteCenter(0);
+            text-align: center;
+
+            a{
+                position: relative;
+                font-size: map-get($font-sizes, small);
+                display: block;
+                width: 140px;
+                line-height: 80px;
+                color: $text-color;
+
+                &:hover{
+                    color: $accent-color1;
+
+                    &::after{
+                        width: 60px;
+                    }
+                }
+
+                &::after{
+                    content: "";
+                    @include absoluteCenter(57px);
+                    display: block;
+                    width: 0px;
+                    height: 2px;
+                    background-color: $accent-color1;
+                }
+            }
+        }
+
+        .menuBtn{
+            position: absolute;
+            right: 20px;
+            top: 30px;
+            width: 30px;
+            height: 20px;
+
+            div{
+                position: absolute;
+                right: 0;
+                height: 3px;
+                border-radius: 1.5px;
+                width: 100%;
+                background-color: $text-color;
+            }
+            
+            &:hover div{
+                background-color: $accent-color1;
+            }
+
+            div:nth-child(2){
+                top: 8.5px;
+                width: 75%;
+            }
+            
+            div:nth-child(3){
+                bottom: 0;
+            }
+        }
+    }
+}
+
+.menuPop{
+    display: none;
+}
+// 헤더 E
+
+// 메인슬라이드 S
+.mainSlide{
+    &::before{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.2);
+    }
+
+    position: relative;
+    height: 100vh;
+    background: url(../img/main_slide0.jpeg) center;
+    background-size: cover;
+    text-align: center;
+
+    .titleBox{
+        @include absoluteCenter(40vh);
+        width: 40%;
+
+        .parisienne{
+            color: $accent-color1;
+            margin-bottom: 20px;
+            padding-top: 40px;
+        }
+
+        p{
+            font-weight: map-get($font-weights, light);
+            color: $text-color;
+            padding-bottom: 40px;
+        }
+    }
+
+    .pagination{
+        @include flexCenter(space-between);
+        @include absoluteCenter(70vh);
+
+        .dot{
+            position: relative;
+            width: 24px;
+            height: 24px;
+            border: 2px solid $text-color;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 0 5px;
+
+            a{
+                display: block;
+                width: 12px;
+                height: 12px;
+                border-radius: 5px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            
+            &:hover{
+                border-color: $accent-color1;
+            }
+
+            &.curDot{
+                border-color: $accent-color1;
+            }
+
+            &.curDot a{
+                background-color: $accent-color1;
+            }
+        }
+
+        .stopBtn{
+            width: 24px;
+            height: 24px;
+            margin: 0 5px;
+            background: url(../img/stop.png) no-repeat center;
+
+            a{
+                display: block;
+                text-indent: -9999px;
+                line-height: 24px;
+            }
+        }
+    }
+
+    .floatingItems{
+        @include flexCenter(center);
+        @include absoluteCenter(80vh);
+
+        li{
+            position: relative;
+
+            &:nth-child(2){
+                margin: 0 5px;
+            }
+
+            a{
+                padding: 20px 40px;
+                display: block;
+                color: $text-color;
+                border: 1px solid $text-color;
+
+                p{
+                    margin-top: 5px;
+                }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 0;
+                    background-color: $accent-color1;
+                    z-index: -1;
+                }
+
+                &:hover::after{
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .scrolltopBtn{
+        display: block;
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+        width: 50px;
+        height: 50px;
+        z-index: 9999;
+        transform: rotate(180deg);
+        @include flexCenter(center);
+
+        i::before{
+            font-size: 40px;
+        }
+    }
+}
+// 메인슬라이드 E
+
+// 객실안내 S
+.room{
+    position: relative;
+    margin-top: 120px;
+    overflow: hidden;
+
+    .roomInner{
+        @include marginCenter;
+        height: 680px;
+        
+        .tabsTitle{
+            @include flexCenter(space-between);
+            margin: 10px auto;
+            width: 480px;
+            text-align: center;
+    
+            .curTab a{
+                color: $accent-color1;
+    
+                &::after{
+                    width: 50px;
+                }
+            }
+    
+            a{
+                display: block;
+                position: relative;
+                width: 120px;
+                line-height: 50px;
+    
+                &::after{
+                    @include afterUnderLine(43px);
+                }
+    
+                &:hover{
+                    color: $accent-color1;
+    
+                    &::after{
+                        width: 50px;
+                    }
+                }
+            }
+        }
+
+        .roomDetail{
+            position: relative;
+            width: 50%;
+            margin-top: 40px;
+            padding: 80px 0 100px 0;
+            color: $text-color;
+
+            &::before{
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 9999px;
+                height: 100%;
+                background-color: $gray-color;
+                z-index: -1;
+            }
+
+            .parisienne{
+                margin-bottom: 20px;
+                color: $accent-color1;
+            }
+            
+            dt{
+                width: 20%;
+                line-height: 2.5em;
+            }
+            dd{
+                width: 80%;
+            }
+
+            p{
+                width: 450px;
+                margin-top: 10px;
+            }
+
+            .controlBtn{
+                position: absolute;
+                top: 40px;
+
+                &:hover{
+                    color: $accent-color1;
+                }
+
+                &.prevBtn{
+                    transform: rotate(90deg);
+                    right: 100px;
+                }
+                &.nextBtn{
+                    transform: rotate(-90deg);
+                    right: 40px;
+                }
+            }
+        }
+
+        .imgList{
+            @include flexCenter(flex-start);
+            position: absolute;
+            left: 35%;
+            top: 290px;
+            width: 3100px;
+
+            li{
+                width: 600px;
+                margin-right: 20px;
+                opacity: 0.5;
+
+                &.curImg{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+// 객실안내 E
+
+/* 예약하기
+.reservation{
+    height: 250px;
+    margin-top: 80px;
+    background: url(../img/midVisual.jpg) no-repeat fixed;
+    background-size: cover;
+
+    ul{
+        @include marginCenter();
+        @include flexCenter(center);
+
+        li{
+            flex: 1;
+            margin: 50px 10px;
+            text-align: center;
+            background-color: $rgba-color;
+
+            a{
+                line-height: 150px;
+                text-shadow: 2px 2px 3px $rgba-color;
+                color: $text-color;
+            }
+        }
+    }
+}
+*/
+
+// 펜션소개 S
+.contact{
+    @include marginCenter;
+    margin-top: 120px;
+    
+    .contentBox{
+        @include flexCenter(flex-start);
+        margin-top: 40px;
+        background-color: $gray-color;
+
+        .leftBox{
+            width: 50%;
+
+            iframe{
+                width: 100%;
+            }
+        }
+
+        .rightBox{
+            width: 50%;
+            padding: 50px;
+            color: $text-color;
+            
+            dt{
+                width: 20%;
+                vertical-align: top;
+            }
+
+            dd{
+                width: 80%;
+
+                dt{
+                    width: 25%;
+                }
+
+                dd{
+                    width: 75%;
+                }
+
+                dd.ml{
+                    margin-left: 25%
+                }
+            }
+        }
+    }
+}
+// 펜션소개 E
+
+// 주변소개 S
+.arround{
+    @include marginCenter;
+    margin-top: 120px;
+}
+// 주변소개 S
+
+// 편의시설 S
+.convenient{
+    @include marginCenter;
+    margin-top: 120px;
+
+    .convenientList{
+        @include flexCenter(space-between);
+        width: 1200px;
+        margin: 40px auto 0 auto;
+        text-align: center;
+
+        li{
+            width: 140px;
+            height: 140px;
+            overflow: hidden;
+            border: 1px solid $gray-color;
+            color: $gray-color;
+            margin-left: 72px;
+            margin-bottom: 36px;
+            border-radius: 50%;
+
+            &:nth-child(6n+1){
+                margin-left: 0;
+            }
+
+            i{
+                margin-top: 35px;
+            }
+
+            p{
+                margin-top: 10px;
+            }
+        }
+    }
+}
+// 편의시설 E
+
+// 푸터 S
+footer{
+    background-color: #444;
+    color: $text-color;
+    padding: 40px 0;
+    margin-top: 120px;
+
+    .footerInner{
+        @include marginCenter;
+        @include flexCenter(space-between);
+
+        .footerLeft{
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.2em;
+
+            span{
+                @include mediumfont();
+            }
+        }
+    }
+}
+// 푸터 E

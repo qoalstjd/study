@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bae Minseong &#124; PORTPOLIO</title>
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body>
+  <div class="fixed"></div>
+  
+  <!--====================== wallPaper S ======================-->
+  <section id="wallPaper">
+    <ul class="icons">
+      <li>
+        <button onclick="openLayer()" class="folder" route-directory="directory/directory_javaScript.html">
+          <div class="ico"></div>
+          <p class="icoTit">JavaScript</p>
+        </button>
+      </li>
+      <li>
+        <button onclick="openLayer()" class="folder" route-directory="directory/directory_javaScript.html">
+          <div class="ico"></div>
+          <p class="icoTit">JavaScript</p>
+        </button>
+      </li>
+    </ul>
+  </section>
+  <!--====================== wallPaper E ======================-->
+
+  <!--====================== layer S ======================-->
+  <section id="layer">
+    <div class="title">
+      <p class="titText">JavaScript</p>
+      <div class="btns">
+        <button onclick="minimization()"><span class="hidden">최소화</span></button>
+        <button onclick="maximize()"><span class="hidden">최대화</span></button>
+        <button onclick="closeLayer()"><span class="hidden">닫기</span></button>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="controls">
+        <button class="withText"><span>뒤로</span></button>
+        <button><span class="hidden">앞으로</span></button>
+        <button><span class="hidden">상위폴더</span></button>
+        <button class="withText"><span>검색</span></button>
+        <button class="withText"><span>폴더</span></button>
+      </div>
+      <div class="addressBar">
+        <span>주소(D)</span>
+        <input type="text" value="바탕화면&#8361;JavaScript">
+        <button>이동</button>
+      </div>
+    </div>
+    <div id="content">
+      <div class="menuDetail"></div>
+      <div class="fileList">
+        <table>
+          <caption>폴더 내부 파일 목록</caption>
+          <colgroup>
+            <col style="width: 60%;">
+            <col style="width: 10%;">
+            <col style="width: 15%;">
+            <col style="width: 15%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>이름</th>
+              <th>크기</th>
+              <th>종류</th>
+              <th>수정한 날짜</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. 기본 개념과 동작 원리 이해의 중요성.txt</td>
+              <td>123KB</td>
+              <td>TXT 파일</td>
+              <td>2022-05-26</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="windowBar"></div>
+  </section>
+  <!--====================== layer E ======================-->
+
+  <section id="txt">
+    
+  </section>
+
+  <!--====================== taskBar S ======================-->
+  <section id="taskBar">
+    <div class="taskBarInner">
+      <button class="start" onclick="menuOpen()"><p>시작</p></button>
+      <ul class="taskList">
+        <li></li>
+      </ul>
+    </div>
+    <div class="toolBox">
+      <button class="lang">A</button>
+      <button class="time" onclick="ccOpen()">오전 00:00</button>
+      <div id="calendarClock">
+        <div class="calendarClockBg" onclick="ccClose()"></div>
+        <p class="today">0000년 0월 00일 일요일</p>
+        <div class="ccWrap">
+          <div class="calendar">
+            <div class="title">
+              <button class="prevMonth btn" onclick="prevMonth()">◀</button>
+              <button class="yearMonth" onclick="goToday()">0000년 0월</button>
+              <button class="nextMonth btn" onclick="nextMonth()">▶</button>
+            </div>
+            <div class="content">
+              <ul class="days">
+                <li class="day">일</li>
+                <li class="day">월</li>
+                <li class="day">화</li>
+                <li class="day">수</li>
+                <li class="day">목</li>
+                <li class="day">금</li>
+                <li class="day">토</li>
+              </ul>
+              <ul class="dates"></ul>
+            </div>
+          </div>
+          <div class="clock">
+            <div class="clockImg"></div>
+            <p class="clockTime">오후 00:00:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--====================== taskBar E ======================-->
+
+  <script src="js/calendar_clock.js"></script>
+  <script>
+    const layer = document.getElementById('layer');
+    const folder = document.getElementsByClassName('folder');
+    const calendarClock = document.getElementById('calendarClock');
+
+    function openLayer() {
+      layer.style.display = 'block';
+    }
+
+    function closeLayer() {
+      layer.style.display = 'none';
+    }
+
+    function ccOpen() {
+      calendarClock.style.display = 'block';
+    }
+
+    function ccClose() {
+      calendarClock.style.display = 'none';
+    }
+
+    let time = new Date();
+    function getHMStr(){
+      time = new Date();
+      if(time.getHours() > 12 && time.getMinutes() > 9) {
+        document.querySelector('.time').textContent = `오후 ${today.getHours() - 12}:${today.getMinutes()}`
+      }else if(time.getHours() < 10) {
+        document.querySelector('.time').textContent = `오전 0${today.getHours()}:${today.getMinutes()}`
+      }else if(time.getHours() < 10 && time.getMinutes() <= 9) {
+        document.querySelector('.time').textContent = `오전 0${today.getHours()}:0${today.getMinutes()}`
+      }else {
+        document.querySelector('.time').textContent = `오전 ${today.getHours()}:${today.getMinutes()}`
+      }
+    }
+    getHMStr()
+    setInterval(getHMStr, 1000);
+  </script>
+</body>
+</html>

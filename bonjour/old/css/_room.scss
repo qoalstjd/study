@@ -1,0 +1,30 @@
+#room{
+  .submainVisual{
+    position: relative;
+    height: 300px;
+    margin-top: 80px;
+    text-align: center;
+    background-color: #222;
+
+    .titleBox{
+      @include absoluteCenter(50%);
+      transform: translate(-50%,-50%);
+    }
+  }
+
+  .sideNav{
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #ccc;
+    z-index: 999;
+  }
+
+  .contents{
+    @include marginCenter;
+    top: -100vh;
+    background-color: #eee;
+  }
+}

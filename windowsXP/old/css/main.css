@@ -1,0 +1,633 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Parisienne&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+iframe, img {
+  vertical-align: middle;
+  border: none;
+  width: 100%;
+}
+
+html, body, header, section, footer, ul, li, a, h1, h2, h3, h4, h5, h6, p, button, address, strong, em, dl, dt, dd, div, span, input, th, td {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.6em;
+  font-style: normal;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+section {
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+caption, .hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+article {
+  padding: 60px;
+}
+article .h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 30px 0;
+}
+article strong {
+  font-weight: 500;
+}
+article a {
+  color: #d16098;
+}
+article p {
+  margin: 1em 0;
+}
+article img {
+  margin: 30px auto;
+}
+article .desc-img {
+  color: gray;
+  font-size: 85%;
+  margin-top: -20px;
+  text-align: center;
+}
+article .info {
+  padding: 35px;
+  background-color: rgba(51, 169, 220, 0.1);
+  border-left: 0.25em solid #33a9dc;
+  color: rgba(0, 0, 0, 0.5);
+}
+article pre {
+  white-space: pre-wrap;
+  margin: 30px -60px;
+  background-color: #282a36;
+}
+article pre code {
+  position: relative;
+  display: block;
+  padding: 30px 60px;
+  font-size: 90%;
+  color: #fff;
+}
+article pre code::before {
+  content: "code";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #f4f1ce;
+  height: 1rem;
+  padding: 0 0.5rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-size: 0.6rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+}
+article pre code.language-javascript::before {
+  content: "javascript";
+  background-color: #6ecd56;
+  color: #fff;
+}
+article pre code .cm-variable {
+  color: #50fa7b;
+}
+article pre code .cm-property {
+  color: #66d9ef;
+}
+article pre code .cm-string {
+  color: #f1fa8c;
+}
+article pre code .cm-keyword {
+  color: #ff79c6;
+}
+article pre code .cm-def {
+  color: #50fa7b;
+}
+article pre code .cm-comment {
+  color: #ccc;
+}
+article pre code .cm-operator {
+  color: #ff79c6;
+}
+
+#boot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  z-index: 9;
+}
+#boot .bootImg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -60px;
+  margin-left: 20px;
+  width: 386px;
+}
+#boot .progressBar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 226px;
+  height: 28px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  margin-top: 150px;
+  overflow: hidden;
+}
+#boot .progressBar .progress {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: -60px;
+}
+#boot .progressBar .progress div {
+  width: 18px;
+  height: 20px;
+  margin-top: 2px;
+  margin-left: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, #393d6f, #51589a, #7d92ea, #7d92ea, #7d92ea, #7d92ea, #7d92ea, #243aa7, #243aa7, #23338c);
+}
+#boot .copy {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-align: right;
+  color: #fff;
+}
+
+#newStart {
+  height: 100vh;
+  background: url(../img/new_start.jpg) no-repeat center;
+  background-size: 100% 100%;
+}
+#newStart p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: "굴림", sans-serif;
+  font-style: italic;
+  font-size: 32px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#wallPaper {
+  background-image: url(../img/main.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+}
+#wallPaper .icons {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: flex-start;
+  height: 90vh;
+}
+#wallPaper .icons li > button {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: 30px 0 0 20px;
+  text-align: center;
+}
+#wallPaper .icons li > button .ico {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: url("../img/splite_ico.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+  vertical-align: top;
+}
+#wallPaper .icons li > button .icoTit {
+  color: #fff;
+  line-height: 30px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+#layer {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: calc(100% - 35px);
+  margin-top: -17.5px;
+  border: 3px solid #005aeb;
+  border-top: none;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  background-color: #fff;
+  display: none;
+}
+#layer .title {
+  height: 32px;
+  background-image: url(../img/window_title.png);
+}
+#layer .title .titText {
+  color: #fff;
+  padding-left: 32px;
+  line-height: 32px;
+}
+#layer .title .titText::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background: url("../img/splite_ico.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+}
+#layer .title .btns {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: flex;
+  gap: 3px;
+}
+#layer .title .btns button {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: url("../img/splite.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+}
+#layer .title .btns button:nth-child(1) {
+  background-position: 0 0;
+}
+#layer .title .btns button:nth-child(2) {
+  background-position: -26px 0;
+}
+#layer .title .btns button:nth-child(3) {
+  background-position: -78px 0;
+}
+#layer .menu {
+  background-color: #f2f4f2;
+}
+#layer .menu .controls {
+  height: 42px;
+  border-bottom: 2px solid #f1eee6;
+}
+#layer .menu .controls button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  vertical-align: top;
+}
+#layer .menu .controls button span {
+  display: block;
+  text-indent: 35px;
+}
+#layer .menu .controls button.withText {
+  width: 80px;
+}
+#layer .menu .controls button::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: url("../img/splite.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+#layer .menu .controls button:nth-child(1)::after {
+  background-position: 0 -25px;
+}
+#layer .menu .controls button:nth-child(2)::after {
+  background-position: -25px -25px;
+}
+#layer .menu .addressBar {
+  height: 24px;
+  border-bottom: 2px solid #f1eee6;
+  font-size: 0;
+}
+#layer .menu .addressBar span {
+  display: inline-block;
+  color: #aaa;
+  padding: 0 5px;
+  line-height: 22px;
+}
+#layer .menu .addressBar input {
+  position: relative;
+  width: calc(100% - 131px);
+  height: 22px;
+  border: 1px solid #84a2bd;
+  border-radius: 1px;
+  padding-left: 24px;
+  background: url("../img/splite_ico.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+  background-size: 9%;
+  background-position: 2px 0;
+}
+#layer .menu .addressBar button {
+  position: relative;
+  width: 70px;
+  line-height: 22px;
+  text-indent: 16px;
+}
+#layer .menu .addressBar button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  background: url("../img/splite.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+  background-position: -40px -20px;
+}
+#layer #content {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 128px);
+  overflow-y: auto;
+}
+#layer #content::-webkit-scrollbar {
+  width: 20px;
+}
+#layer #content::-webkit-scrollbar-track {
+  background-color: #fbfbf8;
+}
+#layer #content::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  border-top: 2px solid #e0e7ef;
+  border-bottom: 2px solid #e0e7ef;
+  background-image: url(../img/thumb.png);
+  background-size: 20px 1px;
+}
+#layer #content::-webkit-scrollbar-button {
+  background: url("../img/splite.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+}
+#layer #content::-webkit-scrollbar-button:start:decrement {
+  display: block;
+  height: 20px;
+  background-position: -80px 0;
+}
+#layer #content::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 20px;
+  background-position: -80px -20px;
+}
+#layer #content .menuDetail {
+  position: fixed;
+  left: 0;
+  top: 98px;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(to bottom, #7ba2e7, #6376d6);
+}
+#layer #content .fileList {
+  position: relative;
+  left: 220px;
+  width: calc(100% - 220px);
+  overflow: hidden;
+}
+#layer #content .fileList table {
+  position: relative;
+  width: 100%;
+}
+#layer #content .fileList table th, #layer #content .fileList table td {
+  text-align: left;
+  line-height: 20px;
+  border-right: 10px solid transparent;
+}
+#layer #content .fileList table th:last-child, #layer #content .fileList table td:last-child {
+  border-right: none;
+}
+#layer #content .fileList table th {
+  background-image: url(../img/th_bar.png);
+  padding-left: 5px;
+  padding-bottom: 2px;
+}
+#layer #content .fileList table th:nth-child(2) {
+  text-align: right;
+}
+#layer #content .fileList table td {
+  line-height: 22px;
+  padding-bottom: 0;
+  position: relative;
+}
+#layer #content .fileList table td:nth-child(1) {
+  padding-left: 22px;
+  background-color: #f7f7f7;
+}
+#layer #content .fileList table td:nth-child(1)::after {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  background: url("../img/splite_ico.png") no-repeat;
+  background-position: 0 0;
+  background-size: 500%;
+  background-position: 0 -16px;
+}
+#layer #content .fileList table td:nth-child(2) {
+  text-align: right;
+}
+#layer .windowBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 29px;
+  background-image: url(../img/window_bar.png);
+}
+
+#taskBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 36px;
+  background-image: url(../img/bar.png);
+}
+#taskBar .taskBarInner {
+  flex: 1;
+  position: relative;
+  border-right: 1px solid #136583;
+}
+#taskBar .taskBarInner .start {
+  position: relative;
+  width: 113px;
+  height: 36px;
+  background-image: url(../img/start.png);
+}
+#taskBar .taskBarInner .start.on {
+  background-image: url(../img/start_on.png);
+}
+#taskBar .taskBarInner .start p {
+  font-size: 20px;
+  margin-bottom: 4px;
+  text-indent: 7px;
+  color: #fff;
+}
+#taskBar .taskBarInner .taskList {
+  position: absolute;
+  left: 120px;
+  top: 0;
+}
+#taskBar .toolBox {
+  position: relative;
+  padding: 0 15px;
+  background-image: url(../img/time_bar.png);
+  border-left: 2px solid #21c5f6;
+}
+#taskBar .toolBox .lang {
+  position: absolute;
+  left: -32.5px;
+  top: 5px;
+  display: block;
+  width: 25px;
+  height: 25px;
+  line-height: 22.5px;
+  text-align: center;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 2px;
+}
+#taskBar .toolBox .time {
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+}
+#taskBar .toolBox #calendarClock {
+  position: absolute;
+  right: 0;
+  bottom: 35px;
+  width: 400px;
+  border: 7px solid #a0d29a;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 15px;
+  display: none;
+}
+#taskBar .toolBox #calendarClock .today {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #587dd5;
+}
+#taskBar .toolBox #calendarClock .ccWrap {
+  display: flex;
+  flex-flow: row wrap;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar {
+  width: 60%;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .title {
+  position: relative;
+  margin-bottom: 5px;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .title .yearMonth {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .title .btn {
+  position: absolute;
+  top: 0;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .title .btn.prevMonth {
+  left: 0;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .title .btn.nextMonth {
+  right: 0;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .days {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+  border-bottom: 0.1em solid #ddd;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .days .day {
+  width: 14.2857142857%;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .dates {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .dates .date {
+  width: 14.2857142857%;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .dates .date span {
+  display: block;
+  border: 1px solid transparent;
+  line-height: 1.2em;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .dates .date span.other {
+  color: #aaa;
+}
+#taskBar .toolBox #calendarClock .ccWrap .calendar .content .dates .date span.curday {
+  display: block;
+  border-color: blue;
+  background-color: skyblue;
+  border-radius: 4px;
+}
+#taskBar .toolBox #calendarClock .clock {
+  width: 40%;
+}
+#taskBar .toolBox #calendarClock .clock .clockImg {
+  width: 100%;
+  height: 160px;
+  background: url(../img/clock.png) no-repeat center;
+  background-size: 95%;
+}
+#taskBar .toolBox #calendarClock .clock p {
+  text-align: center;
+}/*# sourceMappingURL=main.css.map */

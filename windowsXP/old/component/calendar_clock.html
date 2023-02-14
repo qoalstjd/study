@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar&amp;Clock</title>
+  <link rel="stylesheet" href="../../reset.css">
+  <style>
+    #container{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 500px;
+      border: 5px solid #587dd5;
+      background-color: #fff;
+      border-radius: 6px;
+      padding: 15px;
+    }
+
+    .today{
+      text-align: center;
+      margin-bottom: 15px;
+      color: #587dd5;
+    }
+
+    .ccWrap{
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .calendar{
+      width: 60%;
+    }
+
+    .title{
+      position: relative;
+    }
+
+    .title .yearMonth{
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .title .btn{
+      position: absolute;
+      top: 0;
+    }
+    .title button.prevMonth{
+      left: 0;
+    }
+    .title button.nextMonth{
+      right: 0;
+    }
+
+    .title .yearMonth{
+      text-align: center;
+    }
+
+    .content .days{
+      display: flex;
+      flex-flow: row wrap;
+      text-align: center;
+      border-bottom: 0.1em solid #ddd;
+    }
+    .content .days li{
+      width: calc(100% / 7);
+      line-height: 1.2em;
+    }
+
+    .content .dates{
+      display: flex;
+      flex-flow: row wrap;
+      text-align: center;
+    }
+
+    .content .dates .date{
+      width: calc(100% / 7);
+    }
+
+    .content .dates .date span{
+      display: block;
+      border: 1px solid transparent;
+      line-height: 1.2em;
+    }
+
+    .other {
+      color: #aaa;
+    }
+
+    .content .dates .date .curday {
+      display: block;
+      border-color: blue;
+      background-color: skyblue;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <p class="today">0000년 0월 00일 일요일</p>
+    <div class="ccWrap">
+      <div class="calendar">
+        <div class="title">
+          <button class="prevMonth btn" onclick="prevMonth()">◀</button>
+          <button class="yearMonth" onclick="goToday()">0000년 0월</button>
+          <button class="nextMonth btn" onclick="nextMonth()">▶</button>
+        </div>
+        <div class="content">
+          <ul class="days">
+            <li class="day">일</li>
+            <li class="day">월</li>
+            <li class="day">화</li>
+            <li class="day">수</li>
+            <li class="day">목</li>
+            <li class="day">금</li>
+            <li class="day">토</li>
+          </ul>
+          <ul class="dates"></ul>
+        </div>
+      </div>
+      <div class="clock">
+        <p class="time">오후 00:00:00</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    let today = new Date();
+    // 날짜 포메팅
+    function getFullYmdStr(){
+      today = new Date();
+      document.querySelector('.today').textContent = today.getFullYear() + "년 " + (today.getMonth()+1) + "월 " + today.getDate() + "일 " + '일월화수목금토'.charAt(today.getUTCDay())+'요일';
+    }
+
+    // 시간 포메팅
+    function getFullHmsStr(){
+      today = new Date();
+      document.querySelector('.time').textContent = today.getHours() + "시 " + today.getMinutes() + "분 " + today.getSeconds() + "초 ";
+    }
+
+    getFullYmdStr()
+    setInterval(getFullHmsStr, 1000);
+    getFullHmsStr()
+    setInterval(getFullHmsStr, 1000);
+
+    // Date 객체 생성
+    let date = new Date();
+
+    const renderCalendar = () => {
+      const viewYear = date.getFullYear();
+      const viewMonth = date.getMonth();
+
+      // yearMonth, today 채우기
+      document.querySelector('.yearMonth').textContent = `${viewYear}년 ${viewMonth + 1}월`;
+
+      // 지난 달 마지막 Date, 이번 달 마지막 Date
+      const prevLast = new Date(viewYear, viewMonth, 0);
+      const thisLast = new Date(viewYear, viewMonth + 1, 0);
+
+      const PLDate = prevLast.getDate();
+      const PLDay = prevLast.getDay();
+
+      const TLDate = thisLast.getDate();
+      const TLDay = thisLast.getDay();
+
+      // Dates 기본 배열들
+      const prevDates = [];
+      const thisDates = [...Array(TLDate + 1).keys()].slice(1);
+      const nextDates = [];
+
+      // prevDates 계산
+      if (PLDay !== 6) {
+        for (let i = 0; i < PLDay + 1; i++) {
+          prevDates.unshift(PLDate - i);
+        }
+      }
+
+      // nextDates 계산
+      for (let i = 1; i < 7 - TLDay; i++) {
+        nextDates.push(i)
+      }
+
+      // Dates 합치기
+      const dates = prevDates.concat(thisDates, nextDates);
+
+      // Dates 정리
+      const firstDateIndex = dates.indexOf(1); // 이번달 첫날의 인덱스
+      const lastDateIndex = dates.lastIndexOf(TLDate); // 이번달 마지막날의 인덱스
+      dates.forEach((date, i) => {
+        const condition = i >= firstDateIndex && i < lastDateIndex + 1
+          ? 'this'
+          : 'other';
+        dates[i] = `<li class="date"><span class="${condition}">${date}</span></li>`
+      })
+
+      // Dates 그리기
+      document.querySelector('.dates').innerHTML = dates.join('');
+
+      // 오늘 날짜 찾기
+      if(viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+        for (let date of document.querySelectorAll('.this')) {
+          if (+date.innerText === today.getDate()) {
+            date.classList.add('curday');
+            break;
+          }
+        }
+      }
+    }
+
+    renderCalendar();
+    
+    // 이전달 버튼
+    const prevMonth = () => {
+      date.setMonth(date.getMonth() - 1);
+      renderCalendar();
+    }
+    // 다음달 버튼
+    const nextMonth = () => {
+      date.setMonth(date.getMonth() + 1);
+      renderCalendar();
+    }
+    // 오늘날짜 버튼
+    const goToday = () => {
+      date = new Date();
+      renderCalendar();
+    }
+  </script>
+</body>
+</html>

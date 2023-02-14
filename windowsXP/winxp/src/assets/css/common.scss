@@ -1,0 +1,403 @@
+@import "./_reset.scss";
+@import "./_variables.scss";
+@import "./_mixin.scss";
+
+.hidden,
+caption {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// ====================== s main ======================
+main {
+  position: relative;
+  @include flex(column, flex-start, flex-start);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+// ====================== e main ======================
+
+.context {
+  position: absolute;
+}
+
+// ====================== s wallpaper ======================
+.wallpaper {
+  position: relative;
+  @include flex(row, flex-start, flex-start);
+  width: 100%;
+  height: calc(100% - 36px);
+  background: url(../img/main.jpg) center no-repeat;
+  background-size: cover;
+
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, 74px);
+    grid-template-rows: repeat(auto-fill, 80px);
+    gap: 16px 2px;
+    height: 100%;
+    width: 100%;
+    place-items: start stretch;
+    padding: 10px 0;
+
+    li {
+      position: relative;
+
+      button {
+        width: 100%;
+        height: 80px;
+
+        @include flex(column, flex-start, center);
+        &::before {
+          content: "";
+          display: block;
+        }
+        &:focus {
+          outline: none;
+          background: blue;
+        }
+        &.dir::before {
+          @include spliteIco(48px, 0, 0);
+        }
+        &.txt::before {
+          @include spliteIco(48px, 0, -50px);
+        }
+
+        span {
+          @include font($small, $regular);
+          text-shadow: 1px 1px 1px $blk;
+          padding: 2px;
+          color: $wht;
+
+          word-break: break-all;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+
+          &.on {
+            overflow: visible;
+            z-index: 1;
+          }
+        }
+      }
+    }
+  }
+}
+// ====================== e wallpaper ======================
+
+// ====================== s taskbar ======================
+.taskbar {
+  position: relative;
+  @include flex(row, flex-start, flex-start);
+  width: 100%;
+  height: 36px;
+  background: url(../img/bar.png);
+
+  > button {
+    display: block;
+    background: url(../img/start.png);
+    width: 113px;
+    height: 100%;
+    padding: 0 0 3px 8px;
+    color: $wht;
+    @include font($x-large, $bold);
+  }
+
+  > ul {
+    width: 100%;
+    flex: 1;
+    height: 100%;
+    @include flex(row, flex-start, stretch);
+    flex-wrap: wrap;
+    margin-left: 10px;
+
+    li {
+      @include flex(row, flex-start, center);
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 0 8px;
+      margin: 4px 0;
+      background: url(../img/bar.png);
+
+      div {
+        @include spliteIco(16px, 0, 0);
+        text-indent: -9999px;
+      }
+
+      span {
+        @include font($medium, $light);
+        color: $wht;
+      }
+    }
+  }
+
+  > div {
+    padding: 0 15px;
+    border-left: 2px solid #21c5f6;
+    background: url(../img/time_bar.png);
+    line-height: 36px;
+    @include font($small, $bold);
+    color: $wht;
+  }
+}
+
+.layer {
+  @include absolute(50%, initial, initial, 50%, 100px, 100px);
+  transform: translate(-50%, -50%);
+  display: none;
+}
+// ====================== e taskbar ======================
+
+// ====================== s directory ======================
+.directory {
+  @include absolute(50%, initial, initial, 50%, 800px, 500px);
+  transform: translate(-50%, -50%);
+
+  & + .directory {
+    left: calc(50% + 32px);
+    top: calc(50% + 32px);
+
+    & + .directory {
+      left: calc(50% + 64px);
+      top: calc(50% + 64px);
+
+      & + .directory {
+        left: calc(50% + 96px);
+        top: calc(50% + 96px);
+      }
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+
+  border: 3px solid #005aeb;
+  border-top: none;
+  border-radius: 8px 8px 0 0;
+
+  &.max {
+    @include absolute(0, initial, initial, 0, 100%, 100%);
+    transform: none;
+    .title div button:nth-child(2) {
+      background-position: -48px 0;
+    }
+  }
+
+  .title {
+    height: 32px;
+    background-image: url(../img/window_title.png);
+
+    p {
+      color: $wht;
+      padding-left: 28px;
+      line-height: 32px;
+      @include font($medium, $bold);
+
+      &::before {
+        content: "";
+        display: block;
+        @include absolute(8px, initial, initial, 6px, 16px, 16px);
+        @include spliteIco(16px, 0, 0);
+      }
+    }
+
+    div {
+      position: absolute;
+      right: 2px;
+      top: 4px;
+      display: flex;
+      gap: 4px;
+      button:nth-child(1) {
+        background-position: 0 0;
+      }
+      button:nth-child(2) {
+        background-position: -24px 0;
+      }
+      button:nth-child(3) {
+        background-position: -72px 0;
+      }
+      button {
+        @include spliteBtn(24px, 0, 0);
+      }
+    }
+  }
+
+  .menu {
+    background-color: #f2f4f2;
+
+    div {
+      height: 42px;
+      border-bottom: 2px solid #f1eee6;
+      @include flex(row, flex-start, center);
+
+      button {
+        @include flex(row, center, center);
+        width: 40px;
+        height: 40px;
+        gap: 5px;
+
+        &::before {
+          content: "";
+          display: block;
+          @include spliteBtn(24px, 0, 0);
+        }
+        &:nth-child(1)::before {
+          background-position: 0 -24px;
+        }
+        &:nth-child(2)::before {
+          background-position: -24px -24px;
+        }
+
+        &.withText {
+          width: 80px;
+        }
+
+        span {
+          color: $blk;
+        }
+      }
+    }
+
+    form {
+      @include flex(row, flex-start, center);
+      height: 24px;
+      border-bottom: 2px solid #f1eee6;
+
+      label {
+        color: #aaa;
+        padding: 0 5px;
+        @include font($medium, $bold);
+      }
+      input {
+        flex: 1;
+        color: $blk;
+        @include font($small, $regular);
+        line-height: 22px;
+      }
+      button {
+        @include flex(row, center, center);
+        width: 70px;
+        line-height: 22px;
+        color: $blk;
+        @include font($small, $regular);
+        gap: 2px;
+
+        &::before {
+          content: "";
+          display: block;
+          @include spliteBtn(20px, -40px, -20px);
+        }
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    @include flex(row, flex-start, flex-start);
+    height: calc(100% - 127px);
+
+    aside {
+      min-width: 220px;
+      height: 100%;
+      background: linear-gradient(to bottom, #7ba2e7, #6376d6);
+    }
+
+    div {
+      min-width: calc(100% - 220px);
+      height: 100%;
+      background-color: $wht;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      table {
+        width: 100%;
+        @include font($small, $regular);
+        text-align: center;
+
+        th,
+        td {
+          padding: 0 4px 2px;
+
+          white-space: nowrap;
+
+          &:nth-child(1) {
+            text-align: left;
+          }
+          &:nth-child(2) {
+            text-align: right;
+          }
+        }
+
+        th {
+          height: 22px;
+          line-height: 20px;
+          background-image: url(../img/th_bar.png);
+        }
+
+        td {
+          height: 20px;
+
+          &:nth-child(1) {
+            @include flex(row, flex-start, center);
+            gap: 4px;
+            background-color: #f7f7f7;
+
+            &::before {
+              content: "";
+              display: block;
+              @include spliteIco(16px, 0, -16px);
+            }
+          }
+
+          &:nth-child(2) {
+            text-align: right;
+          }
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 20px;
+
+        &-track {
+          background-color: #fbfbf8;
+        }
+        &-thumb {
+          border-radius: 4px;
+          border-top: 2px solid #e0e7ef;
+          border-bottom: 2px solid #e0e7ef;
+          background-image: url(../img/thumb.png);
+          background-size: 20px 1px;
+        }
+        &-button {
+          @include spliteBtn(20px, 0, 0);
+
+          &:start:decrement {
+            display: block;
+            height: 20px;
+            background-position: -80px 0;
+          }
+          &:end:increment {
+            display: block;
+            height: 20px;
+            background-position: -80px -20px;
+          }
+        }
+      }
+    }
+  }
+
+  .windowBar {
+    @include absolute(initial, initial, 0, 0, 100%, 29px);
+    background-image: url(../img/window_bar.png);
+  }
+}
+// ====================== e directory ======================
