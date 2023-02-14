@@ -12,7 +12,7 @@ function Wallpaper({ taskList, setTaskList, DB }) {
   // const [doubleClick, setDoubleClick] = useState(false);
   const openDir = event => {
     if (!taskList.includes(event.target.innerText)) {
-      setTaskList([...taskList, { title: event.target.innerText, type: event.target.className }]);
+      setTaskList([...taskList, event.target.innerText]);
     }
   };
 

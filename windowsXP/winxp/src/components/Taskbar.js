@@ -21,8 +21,6 @@ function Taskbar({ taskList, DB }) {
     }
   }
 
-  console.log(taskList);
-
   return (
     <section className="taskbar">
       <button>시작</button>
@@ -30,7 +28,7 @@ function Taskbar({ taskList, DB }) {
         {taskList.map((task, i) => (
           <li key={i}>
             <div className={task.type}>{task.type}</div>
-            <span>{task.title}</span>
+            <span>{task}</span>
           </li>
         ))}
       </ul>
