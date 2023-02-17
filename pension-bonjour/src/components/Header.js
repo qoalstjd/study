@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ scrolled }) => {
   return (
-    <header>
+    <header className={scrolled ? "scrolled" : ""}>
       <div>
         <div>
           <Link to="/">
@@ -11,16 +11,19 @@ const Header = () => {
         </div>
         <ul>
           <li>
-            <Link to="/">펜션소개</Link>
+            <Link to="/about">펜션소개</Link>
           </li>
           <li>
-            <Link to="/">객실안내</Link>
+            <Link to="/rooms">객실안내</Link>
           </li>
           <li>
-            <Link to="/">주변소개</Link>
+            <Link to="/around">주변소개</Link>
           </li>
           <li>
-            <Link to="/">예약하기</Link>
+            <Link to="/reservation">예약하기</Link>
+          </li>
+          <li>
+            <Link to="/news">봉쥬르소식</Link>
           </li>
         </ul>
         <button></button>

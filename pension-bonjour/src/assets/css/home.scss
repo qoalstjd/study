@@ -1,0 +1,126 @@
+@import "./_variables.scss";
+@import "./_mixin.scss";
+
+section {
+  position: relative;
+  height: 100vh;
+  background-color: #666;
+}
+
+main {
+  height: 100vh;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.pageDots {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+
+  li {
+    a {
+      display: block;
+      text-align: left;
+      width: 100%;
+      padding: 4px 32px 4px 0;
+      margin-top: 4px;
+      @include font($medium, $bold);
+      transition-duration: 0.5s;
+
+      border-bottom: 1px solid $wht;
+      color: $wht;
+      &.active {
+        color: $c3;
+        border-bottom-color: $c3;
+      }
+    }
+  }
+}
+
+.scrollBar {
+  @include absolute(80px, 8px, initial, initial, 4px, calc(100% - 160px));
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 1;
+  overflow: hidden;
+
+  > div {
+    background-color: $c3;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+  }
+}
+
+.mainVisual {
+  position: relative;
+  height: 100vh;
+
+  .visualExtend {
+    @include absolute(50%, initial, initial, 50%, 100%, 100%);
+    transform: translate(-50%, -50%);
+    clip: rect(20vh calc(70vw - 8.5px) 80vh calc(30vw - 8.5px));
+    clip: rect(20vh, calc(70vw - 8.5px), 80vh, calc(30vw - 8.5px));
+    animation: visualExtend 1s ease-in-out 2s 1 normal forwards;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../img/main_slide0.jpeg) no-repeat center;
+    background-size: cover;
+
+    @keyframes visualExtend {
+      from {
+        clip: rect(20vh calc(70vw - 8.5px) 80vh calc(30vw - 8.5px));
+        clip: rect(20vh, calc(70vw - 8.5px), 80vh, calc(30vw - 8.5px));
+      }
+      to {
+        clip: rect(0px 100vw 100vh 0px);
+        clip: rect(0px, 100vw, 100vh, 0px);
+      }
+    }
+
+    &::after {
+      content: "";
+      @include absolute(50%, initial, initial, 50%, 100%, 100%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .titleBox {
+    @include absolute(50%, initial, initial, 50%, 100%, initial);
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    color: $wht;
+    @include font($xx-large, $x-bold);
+
+    p {
+      opacity: 0;
+      animation-name: fadeIn, fadeOut;
+      animation-duration: 1s, 1s;
+      animation-timing-function: ease-in-out, ease-in-out;
+      animation-delay: 0s, 3s;
+      animation-iteration-count: 1, 1;
+      animation-fill-mode: forwards, forwards;
+
+      + p {
+        animation-delay: 1s, 3s;
+        margin-top: 40px;
+      }
+    }
+  }
+
+  h1 {
+    @include absolute(calc(50% - 52px), initial, initial, 0, 100%, initial);
+    font-family: "Parisienne";
+    color: $c3;
+    font-size: $xxx-large;
+    opacity: 0;
+
+    animation: fadeIn 1s ease-in-out 3.5s 1 normal forwards;
+
+    span {
+      font-size: $x-large;
+    }
+  }
+}

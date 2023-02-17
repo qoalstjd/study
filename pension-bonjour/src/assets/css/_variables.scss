@@ -1,11 +1,26 @@
 $blk: #000;
 $wht: #fff;
 
+$default-color: #f7dc36;
+
+$c1: darken($default-color, 30%);
+$c2: darken($default-color, 15%);
+$c3: $default-color;
+$c4: lighten($default-color, 15%);
+$c5: lighten($default-color, 30%);
+
+$ac1: rgba($c1, 0.9);
+$ac2: rgba($c2, 0.9);
+$ac3: rgba($c3, 0.9);
+$ac4: rgba($c4, 0.9);
+$ac5: rgba($c5, 0.9);
+
 $small: 14px;
 $medium: 16px;
 $large: 18px;
 $x-large: 20px;
 $xx-large: 28px;
+$xxx-large: 52px;
 
 $light: 300;
 $regular: 400;

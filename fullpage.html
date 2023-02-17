@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @charset "utf-8";
+
+      html {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      #fullPage {
+        height: 100%;
+      }
+      #fullPage .section {
+        height: 100%;
+      }
+
+      #fullPage .section {
+        transition: all 1s ease-in-out;
+      }
+      #fullPage .section.active {
+        font-size: 30px;
+      }
+
+      h1 {
+        margin: 0;
+      }
+      #fullPage .section:nth-child(odd) {
+        background-color: yellow;
+      }
+      #fullPage .section:nth-child(even) {
+        background-color: forestgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="fullPage">
+      <div class="section">
+        <h1>Section 1</h1>
+        <p>Section paragraph Section paragraph Section paragraph Section paragraph</p>
+      </div>
+      <div class="section">
+        <h1>Section 2</h1>
+        <p>Section paragraph Section paragraph Section paragraph Section paragraph</p>
+      </div>
+      <div class="section">
+        <h1>Section 3</h1>
+        <p>Section paragraph Section paragraph Section paragraph Section paragraph</p>
+      </div>
+    </div>
+
+    <!--
+js를 외부 파일로 호출 할 경우 아래 처럼 사용해도 된다.
+<script type="text/javascript" src="fullpage.js"></script>
+<script>
+    sUI.fullPage();
+    //sUI.fullPage('#fullpage');
+    /*
+    sUI.fullPage({
+        container: '#fullPage',
+        pageClassName: '.section',
+        easing: 'ease',
+        duration: 0,
+    }); // parameter : option obj list
+    */
+</script>
+-->
+    <script>
+      (function (win, doc) {
+        win.sUI = {}; // my ui option list
+
+        sUI.fullPage = function (param) {
+          "use strict";
+
+          var option = {
+            container: "#fullPage",
+            pageClassName: ".section",
+            easing: "easeInOutQuart",
+            duration: 1000,
+          };
+          // easing option
+          // easeInOutQuart, easeInOutCubic
+
+          // get fullPage ID
+          if (typeof param === "object") {
+            console.log("object");
+            option = {
+              container: param.container,
+              pageClassName: param.pageClassName,
+              easing: param.easing,
+              duration: param.duration,
+            };
+          } else if (typeof param === "string") {
+            console.log("string");
+            option.conatiner = param;
+          } else {
+            console.log("empty");
+          }
+
+          var setup = {
+            winW: 0,
+            winH: 0,
+            container: undefined,
+            page: undefined,
+            pageLength: 0,
+            marginTop: 0,
+          };
+
+          // SETUP
+          function getSetup() {
+            setup.winW = win.innerWidth;
+            setup.winH = win.innerHeight;
+            setup.container = doc.querySelector(option.container);
+            setup.page = doc.querySelectorAll(option.pageClassName);
+            setup.page[0].classList.add("active");
+            setup.pageLength = setup.page.length;
+            setup.container.style.marginTop = setup.marginTop + "px";
+          }
+
+          // ACTION
+          function moveTo(from, to) {
+            var start = new Date().getTime();
+
+            var timer = setInterval(function () {
+              var time = new Date().getTime() - start;
+              var mt = easing[option.easing](time, from, to - from, option.duration);
+              setup.container.style.marginTop = Math.round(mt) + "px";
+
+              if (time >= option.duration) clearInterval(timer);
+            }, 1000 / 60);
+          }
+
+          //
+          // http://easings.net/#easeInOutQuart
+          //  t: current time
+          //  b: beginning value
+          //  c: change in value
+          //  d: duration
+          //
+          var easing = {};
+          easing.easeInOutQuart = function (t, b, c, d) {
+            if ((t /= d / 2) < 1) return (c / 2) * t * t * t * t + b;
+            return (-c / 2) * ((t -= 2) * t * t * t - 2) + b;
+          };
+          easing.easeInOutCubic = function (t, b, c, d) {
+            if ((t /= d / 2) < 1) return (c / 2) * t * t * t + b;
+            return (c / 2) * ((t -= 2) * t * t + 2) + b;
+          };
+
+          // EVENT handler
+          var wheelDeltaY; //'up' || 'down'
+          var pageIndex = 0;
+          var prevMarginTop = setup.marginTop;
+          function getDeltaY(deltaY) {
+            var prevPageIndex = pageIndex;
+            if (deltaY > 0) {
+              wheelDeltaY = "up";
+              if (pageIndex < setup.pageLength - 1) {
+                console.log(setup.pageLength);
+                ++pageIndex;
+              }
+            } else {
+              wheelDeltaY = "down";
+              if (pageIndex > 0 && pageIndex < setup.pageLength) {
+                --pageIndex;
+              }
+            }
+            setup.page[prevPageIndex].classList.remove("active");
+            setup.page[pageIndex].classList.add("active");
+
+            setup.marginTop = pageIndex * -setup.winH;
+            moveTo(prevMarginTop, setup.marginTop);
+            prevMarginTop = setup.marginTop;
+          }
+
+          var listeningWheelEvent = true;
+          var prevTime = 0;
+          function wheelHandler(e) {
+            var curTime = new Date().getTime();
+
+            if (curTime - prevTime < option.duration) {
+              listeningWheelEvent = false;
+              return false;
+            } else {
+              listeningWheelEvent = true;
+              getDeltaY(e.deltaY);
+            }
+            prevTime = curTime;
+          }
+
+          // BIND EVENTS, pointer
+          function bindContainerPointer() {
+            win.addEventListener("wheel", wheelHandler);
+          }
+
+          // UNBIND EVENTS
+          function unbindWheelEvent() {
+            win.removeEventListener("wheel", wheelHandler);
+          }
+
+          // DESTROY
+          function destroy() {
+            unbindWheelEvent();
+          }
+          // INIT
+          function init() {
+            getSetup();
+            bindContainerPointer();
+          }
+          init();
+        };
+      })(window, document);
+
+      sUI.fullPage();
+    </script>
+  </body>
+</html>
